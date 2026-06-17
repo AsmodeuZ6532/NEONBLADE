@@ -34,6 +34,9 @@
             --egl-tab-text: #626d7c;
             --egl-tab-text-active: #1b222c;
             --egl-swiss-bg: #f8f9fa;
+            --egl-prize-gold: #f0b400;
+            --egl-prize-silver: #c0c0c0;
+            --egl-prize-bronze: #cd7f32;
         }
 
         body.dark-theme {
@@ -63,6 +66,9 @@
             --egl-tab-text: #8b949e;
             --egl-tab-text-active: #e6edf3;
             --egl-swiss-bg: #161b22;
+            --egl-prize-gold: #f0b400;
+            --egl-prize-silver: #c0c0c0;
+            --egl-prize-bronze: #cd7f32;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -568,6 +574,68 @@
         .swiss-results .result-item:last-child { border-bottom: none; }
         .swiss-results .result-item .record { font-weight: 700; color: var(--egl-accent-blue); }
 
+        /* ===== ПРИЗОВЫЕ МЕСТА (ВНУТРИ ТУРНИРА) ===== */
+        .prize-container {
+            background: var(--egl-box-bg);
+            border: 1px solid var(--egl-border);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-top: 20px;
+        }
+        .prize-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--egl-accent-orange);
+            text-align: center;
+        }
+        .prize-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 12px;
+        }
+        .prize-item {
+            background: var(--egl-box-header);
+            border: 1px solid var(--egl-border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        .prize-item:hover { border-color: var(--egl-accent-blue); }
+        .prize-item .prize-place {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--egl-text-dark);
+        }
+        .prize-item .prize-place .gold { color: var(--egl-prize-gold); }
+        .prize-item .prize-place .silver { color: var(--egl-prize-silver); }
+        .prize-item .prize-place .bronze { color: var(--egl-prize-bronze); }
+        .prize-item .prize-status {
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 6px;
+            padding: 2px 10px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+        .prize-item .prize-status.eliminated {
+            background: rgba(218, 54, 51, 0.12);
+            color: var(--egl-accent-red);
+        }
+        .prize-item .prize-status.finalist {
+            background: rgba(192, 192, 192, 0.15);
+            color: var(--egl-prize-silver);
+        }
+        .prize-item .prize-status.champion {
+            background: rgba(240, 180, 0, 0.15);
+            color: var(--egl-prize-gold);
+        }
+        .prize-item .prize-status.semi {
+            background: rgba(205, 127, 50, 0.12);
+            color: var(--egl-prize-bronze);
+        }
+
         /* ===== ПРОФИЛЬ ===== */
         .back-link-container { margin-bottom: 16px; }
         .egl-back-btn {
@@ -682,6 +750,58 @@
         .egl-stat-label { color: var(--egl-text-grey); font-weight: 600; }
         .egl-stat-value { font-weight: 700; color: var(--egl-stat-value-color); }
         .egl-stat-value.highlight { color: var(--egl-accent-blue); }
+
+        /* ===== ИСТОРИЯ МАТЧЕЙ ===== */
+        .match-history-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+            border-bottom: 1px solid var(--egl-border);
+            font-size: 13px;
+        }
+        .match-history-item:last-child { border-bottom: none; }
+        .match-history-item .h-team {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+        .match-history-item .h-team .h-logo {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            object-fit: contain;
+            background: #0d0f12;
+            border: 1px solid var(--egl-border);
+        }
+        .match-history-item .h-score {
+            font-weight: 700;
+            color: var(--egl-accent-blue);
+            padding: 0 12px;
+        }
+        .match-history-item .h-result {
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 11px;
+        }
+        .match-history-item .h-result.pending {
+            background: var(--egl-box-header);
+            color: var(--egl-text-grey);
+        }
+        .match-history-item .h-result.win {
+            background: rgba(46, 160, 67, 0.15);
+            color: var(--egl-accent-green);
+        }
+        .match-history-item .h-result.loss {
+            background: rgba(218, 54, 51, 0.15);
+            color: var(--egl-accent-red);
+        }
+        .match-history-item .h-round {
+            font-size: 11px;
+            color: var(--egl-text-grey);
+        }
 
         .map-card { background: var(--egl-map-card-bg); padding: 8px; border-radius: 4px; text-align: center; border: 1px solid var(--egl-border); }
         .map-card .map-name { font-size: 12px; color: var(--egl-text-grey); }
@@ -870,6 +990,7 @@
             .swiss-results { grid-template-columns: 1fr; }
             .swiss-match { flex-wrap: wrap; gap: 4px; }
             .swiss-match .match-teams { flex-wrap: wrap; gap: 4px; }
+            .prize-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 650px) {
             .egl-navbar { padding: 0 16px; }
@@ -881,6 +1002,7 @@
             .team-name { font-size: 14px; }
             .team-players { display: none; }
             .team-stats-cell { min-width: 90px; }
+            .prize-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -907,6 +1029,7 @@
             <button class="tab-btn active" data-tab="ranking">🏆 Рейтинг</button>
             <button class="tab-btn" data-tab="matches">📅 Матчи</button>
             <button class="tab-btn" data-tab="tournament">🏟️ Турнир</button>
+            <button class="tab-btn" data-tab="stats">📊 Статистика</button>
         </div>
 
         <div id="tab-ranking" class="tab-content active">
@@ -917,6 +1040,9 @@
         </div>
         <div id="tab-tournament" class="tab-content">
             <div id="tournamentView"></div>
+        </div>
+        <div id="tab-stats" class="tab-content">
+            <div id="statsView"></div>
         </div>
         <div id="profileView" class="hidden"></div>
         <div id="statsView" class="hidden"></div>
@@ -991,14 +1117,14 @@
 
         // ===== МАТЧИ С РАСПИСАНИЕМ =====
         const matchesSchedule = [
-            { time: "16:00", team1: allTeams[8], team2: allTeams[10] },  // RayZen vs Luminary team
-            { time: "16:00", team1: allTeams[12], team2: allTeams[2] },  // The GeorgianZ vs VELNORA
-            { time: "17:00", team1: allTeams[13], team2: allTeams[14] }, // Stinky Roosters vs dignitas
-            { time: "17:00", team1: allTeams[6], team2: allTeams[4] },   // EXTAR TEAM vs HAWKS
-            { time: "18:00", team1: allTeams[9], team2: allTeams[5] },   // Viper Academy vs Team Raptors
-            { time: "18:00", team1: allTeams[7], team2: allTeams[3] },   // X TEAM vs Nova Impera
-            { time: "19:00", team1: allTeams[0], team2: allTeams[15] },  // PAW PAW TEAM vs LoyTabTeam
-            { time: "19:00", team1: allTeams[1], team2: allTeams[11] }   // Arc Esports vs N3TEAM
+            { time: "16:00", team1: allTeams[8], team2: allTeams[10] },
+            { time: "16:00", team1: allTeams[12], team2: allTeams[2] },
+            { time: "17:00", team1: allTeams[13], team2: allTeams[14] },
+            { time: "17:00", team1: allTeams[6], team2: allTeams[4] },
+            { time: "18:00", team1: allTeams[9], team2: allTeams[5] },
+            { time: "18:00", team1: allTeams[7], team2: allTeams[3] },
+            { time: "19:00", team1: allTeams[0], team2: allTeams[15] },
+            { time: "19:00", team1: allTeams[1], team2: allTeams[11] }
         ];
 
         // ============================================
@@ -1060,7 +1186,6 @@
                     <div class="modal-stats-line"><span class="modal-stats-label">Команда:</span><span class="modal-stats-value">${teamName}</span></div>
                     <div class="modal-stats-line"><span class="modal-stats-label">Рейтинг 2.0:</span><span class="modal-stats-value">0.00</span></div>
                     <div class="modal-stats-line"><span class="modal-stats-label">K/D Ratio:</span><span class="modal-stats-value">0.00</span></div>
-                    <div class="modal-stats-line"><span class="modal-stats-label">ADR:</span><span class="modal-stats-value">0</span></div>
                     <div class="modal-stats-line"><span class="modal-stats-label">KPR:</span><span class="modal-stats-value">0.00</span></div>
                     <div class="modal-stats-line"><span class="modal-stats-label">DPR:</span><span class="modal-stats-value">0.00</span></div>
                     <div class="modal-stats-line"><span class="modal-stats-label">Сыграно карт:</span><span class="modal-stats-value">0</span></div>
@@ -1078,6 +1203,12 @@
             
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.getElementById('profileView').classList.remove('hidden');
+            
+            const matchHistory = [
+                { opponent: allTeams[Math.floor(Math.random() * 16)], score: "0-0", result: "pending", round: "1" },
+                { opponent: allTeams[Math.floor(Math.random() * 16)], score: "0-0", result: "pending", round: "2" },
+                { opponent: allTeams[Math.floor(Math.random() * 16)], score: "0-0", result: "pending", round: "3" }
+            ];
             
             let mainPlayersHtml = team.players.main.map(p => `
                 <div class="egl-player-card" onclick="showPlayerStatsModal('${p}','${team.name}')">
@@ -1124,16 +1255,26 @@
                         </div>
                         <div class="egl-card">
                             <div class="egl-card-title">История матчей</div>
-                            <div class="egl-empty-table-state"><span class="egl-empty-table-state-icon">📅</span>Матчей не сыграно</div>
+                            ${matchHistory.map(m => `
+                                <div class="match-history-item">
+                                    <div class="h-team">
+                                        <img class="h-logo" src="${m.opponent.logo}" onerror="this.src='https://via.placeholder.com/24'">
+                                        ${m.opponent.name}
+                                    </div>
+                                    <div class="h-score">${m.score}</div>
+                                    <div class="h-result ${m.result}">⏳ Ожидание</div>
+                                    <div class="h-round">Раунд ${m.round}</div>
+                                </div>
+                            `).join('')}
                         </div>
                     </div>
                     <div class="egl-sidebar-column">
                         <div class="egl-card">
                             <div class="egl-card-title">Статистика</div>
                             <div class="egl-stat-row"><span class="egl-stat-label">Винрейт</span><span class="egl-stat-value">${team.overallWinrate}%</span></div>
-                            <div class="egl-stat-row"><span class="egl-stat-label">Игр</span><span class="egl-stat-value highlight">0</span></div>
+                            <div class="egl-stat-row"><span class="egl-stat-label">Игр</span><span class="egl-stat-value highlight">${matchHistory.length}</span></div>
                             <div class="egl-stat-row"><span class="egl-stat-label">Победы/Поражения</span><span class="egl-stat-value">0 / 0</span></div>
-                            <div class="egl-stat-row"><span class="egl-stat-label">Средний K/D</span><span class="egl-stat-value">-</span></div>
+                            <div class="egl-stat-row"><span class="egl-stat-label">Средний K/D</span><span class="egl-stat-value">0.00</span></div>
                         </div>
                         <div class="egl-card">
                             <div class="egl-card-title">Винрейт по картам</div>
@@ -1190,7 +1331,6 @@
         function renderMatches() {
             const container = document.getElementById('matchesView');
             
-            // Группируем матчи по времени
             const groupedMatches = {};
             matchesSchedule.forEach(match => {
                 if (!groupedMatches[match.time]) {
@@ -1203,7 +1343,6 @@
                 <div class="ranking-header">📅 Расписание матчей</div>
             `;
             
-            // Сортируем время
             const times = Object.keys(groupedMatches).sort();
             
             times.forEach(time => {
@@ -1245,12 +1384,64 @@
         }
 
         // ============================================
-        // ТУРНИР — SWISS SYSTEM
+        // СТАТИСТИКА ИГРОКОВ (ВСЕ 0.00)
+        // ============================================
+        function renderStats() {
+            const container = document.getElementById('statsView');
+            
+            const allPlayers = [];
+            allTeams.forEach(team => {
+                team.players.main.forEach(player => {
+                    allPlayers.push({
+                        name: player,
+                        team: team.name,
+                        teamLogo: team.logo,
+                        rating: 0.00,
+                        kd: 0.00,
+                        kpr: 0.00,
+                        dpr: 0.00
+                    });
+                });
+            });
+            
+            function renderPlayerTable(players, title, statKey) {
+                return `
+                    <div class="egl-card">
+                        <div class="egl-card-title">${title}</div>
+                        <div style="padding: 8px 16px;">
+                            ${players.slice(0, 10).map((p, i) => `
+                                <div class="match-history-item" style="cursor:pointer;" onclick="showPlayerStatsModal('${p.name}','${p.team}')">
+                                    <div style="display:flex; align-items:center; gap:10px;">
+                                        <span style="font-weight:700; color:var(--egl-accent-orange); width:24px;">#${i+1}</span>
+                                        <img src="${p.teamLogo}" onerror="this.src='https://via.placeholder.com/24'" style="width:24px;height:24px;border-radius:4px;object-fit:contain;background:#0d0f12;border:1px solid var(--egl-border);">
+                                        <span style="font-weight:600;">${p.name}</span>
+                                        <span style="font-size:12px; color:var(--egl-text-grey);">${p.team}</span>
+                                    </div>
+                                    <span style="font-weight:700; color:var(--egl-accent-blue);">${p[statKey].toFixed(2)}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = `
+                <div class="ranking-header">📊 Статистика игроков</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                    ${renderPlayerTable(allPlayers, '🏆 Рейтинг 2.0 (↓)', 'rating')}
+                    ${renderPlayerTable(allPlayers, '🎯 K/D Ratio (↓)', 'kd')}
+                    ${renderPlayerTable(allPlayers, '💥 KPR (↓)', 'kpr')}
+                    ${renderPlayerTable(allPlayers, '🛡️ DPR (↑)', 'dpr')}
+                </div>
+            `;
+        }
+
+        // ============================================
+        // ТУРНИР — SWISS SYSTEM + ПРИЗОВЫЕ
         // ============================================
         function renderTournament() {
             const container = document.getElementById('tournamentView');
             
-            // Матчи для Раунда 1
             const round1Matches = [
                 { team1: allTeams[8], team2: allTeams[10] },
                 { team1: allTeams[12], team2: allTeams[2] },
@@ -1262,6 +1453,16 @@
                 { team1: allTeams[0], team2: allTeams[15] }
             ];
             
+            const prizeData = [
+                { place: "1-е место", status: "champion", statusText: "🏆 Чемпион", emoji: "🥇" },
+                { place: "2-е место", status: "finalist", statusText: "🥈 Финалист", emoji: "🥈" },
+                { place: "3-4 место", status: "semi", statusText: "❌ 1/2 финала", emoji: "🥉" },
+                { place: "5-8 место", status: "eliminated", statusText: "❌ 1/4 финала", emoji: "" },
+                { place: "9-11 место", status: "eliminated", statusText: "❌ Вылет (2:3)", emoji: "" },
+                { place: "12-14 место", status: "eliminated", statusText: "❌ Вылет (1:3)", emoji: "" },
+                { place: "15-16 место", status: "eliminated", statusText: "❌ Вылет (0:3)", emoji: "" }
+            ];
+            
             let html = `
                 <div class="tournament-header">
                     <div>
@@ -1270,7 +1471,6 @@
                     </div>
                 </div>
 
-                <!-- ТОЛЬКО РАУНД 1 -->
                 <div class="swiss-round">
                     <div class="swiss-round-header">
                         Раунд 1
@@ -1297,7 +1497,6 @@
                     </div>
                 </div>
 
-                <!-- ИТОГИ -->
                 <div class="swiss-results">
                     <div class="result-column">
                         <div class="result-title advance">✅ ПРОШЛИ (8 команд)</div>
@@ -1310,6 +1509,21 @@
                         <div class="result-item"><span>0:3</span><span class="record">2 команды</span></div>
                         <div class="result-item"><span>1:3</span><span class="record">3 команды</span></div>
                         <div class="result-item"><span>2:3</span><span class="record">3 команды</span></div>
+                    </div>
+                </div>
+
+                <!-- ПРИЗОВЫЕ МЕСТА -->
+                <div class="prize-container">
+                    <div class="prize-title">💰 Призовые места</div>
+                    <div class="prize-grid">
+                        ${prizeData.map(p => `
+                            <div class="prize-item">
+                                <div class="prize-place">
+                                    ${p.emoji} ${p.place}
+                                </div>
+                                <div class="prize-status ${p.status}">${p.statusText}</div>
+                            </div>
+                        `).join('')}
                     </div>
                 </div>
             `;
@@ -1326,6 +1540,7 @@
             if (tabName === 'ranking') renderTeamsList();
             else if (tabName === 'matches') renderMatches();
             else if (tabName === 'tournament') renderTournament();
+            else if (tabName === 'stats') renderStats();
         }
 
         function toggleMenu() {
@@ -1355,6 +1570,7 @@
         renderTeamsList();
         renderMatches();
         renderTournament();
+        renderStats();
     </script>
 </body>
 </html>
