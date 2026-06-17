@@ -751,56 +751,12 @@
         .egl-stat-value { font-weight: 700; color: var(--egl-stat-value-color); }
         .egl-stat-value.highlight { color: var(--egl-accent-blue); }
 
-        /* ===== ИСТОРИЯ МАТЧЕЙ ===== */
-        .match-history-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 8px 16px;
-            border-bottom: 1px solid var(--egl-border);
+        /* ===== ИСТОРИЯ МАТЧЕЙ (ПУСТАЯ) ===== */
+        .match-history-empty {
+            padding: 20px;
+            text-align: center;
+            color: var(--egl-text-grey);
             font-size: 13px;
-        }
-        .match-history-item:last-child { border-bottom: none; }
-        .match-history-item .h-team {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-        }
-        .match-history-item .h-team .h-logo {
-            width: 24px;
-            height: 24px;
-            border-radius: 4px;
-            object-fit: contain;
-            background: #0d0f12;
-            border: 1px solid var(--egl-border);
-        }
-        .match-history-item .h-score {
-            font-weight: 700;
-            color: var(--egl-accent-blue);
-            padding: 0 12px;
-        }
-        .match-history-item .h-result {
-            padding: 2px 10px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 11px;
-        }
-        .match-history-item .h-result.pending {
-            background: var(--egl-box-header);
-            color: var(--egl-text-grey);
-        }
-        .match-history-item .h-result.win {
-            background: rgba(46, 160, 67, 0.15);
-            color: var(--egl-accent-green);
-        }
-        .match-history-item .h-result.loss {
-            background: rgba(218, 54, 51, 0.15);
-            color: var(--egl-accent-red);
-        }
-        .match-history-item .h-round {
-            font-size: 11px;
-            color: var(--egl-text-grey);
         }
 
         .map-card { background: var(--egl-map-card-bg); padding: 8px; border-radius: 4px; text-align: center; border: 1px solid var(--egl-border); }
@@ -1050,7 +1006,7 @@
 
     <script>
         // ============================================
-        // 16 КОМАНД
+        // 16 КОМАНД (hxcd ЗАМЕНЁН НА winamp)
         // ============================================
         const allMaps = ["Mirage", "Dust2", "Ancient", "Anubis", "Nuke", "Overpass", "Inferno", "Cache"];
         
@@ -1073,7 +1029,7 @@
               players: { main: ["St1mp", "sp1der", "Takeda", "+W", "k-_- d"], bench: ["icekillerr", "spider1223", "deluuxeee", "st1mp0593", "hava29"] },
               mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
             { id: 4, name: "Nova Impera", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516436861000876032/image.png?ex=6a334c21&is=6a31faa1&hm=2fa722130ca997b9c957eadca0358b4d6e8429002a34dd3e54d3ee6738cdaf68&", tier: "Tier 3", points: 0, overallWinrate: 0,
-              players: { main: ["Marcelo", "Droneks", "M4Tr1X", "-sh4t", "conf1dent"], bench: ["hxcd", "saysay"] },
+              players: { main: ["Marcelo", "Droneks", "M4Tr1X", "-sh4t", "conf1dent"], bench: ["winamp", "saysay"] },
               mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
             { id: 5, name: "HAWKS", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516476141895159959/555555555555.png?ex=6a3370b6&is=6a321f36&hm=47ec34cd65d2c695ee1bbeed27e6ba977df206241ef4dc619ed50b547a63bad1&", tier: "Tier 3", points: 0, overallWinrate: 0,
               players: { main: ["smolik", "kk15", "l1wenfn", "flex", "w0rst1k"], bench: [] },
@@ -1204,12 +1160,6 @@
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.getElementById('profileView').classList.remove('hidden');
             
-            const matchHistory = [
-                { opponent: allTeams[Math.floor(Math.random() * 16)], score: "0-0", result: "pending", round: "1" },
-                { opponent: allTeams[Math.floor(Math.random() * 16)], score: "0-0", result: "pending", round: "2" },
-                { opponent: allTeams[Math.floor(Math.random() * 16)], score: "0-0", result: "pending", round: "3" }
-            ];
-            
             let mainPlayersHtml = team.players.main.map(p => `
                 <div class="egl-player-card" onclick="showPlayerStatsModal('${p}','${team.name}')">
                     <div class="egl-player-avatar">👤</div>
@@ -1255,24 +1205,14 @@
                         </div>
                         <div class="egl-card">
                             <div class="egl-card-title">История матчей</div>
-                            ${matchHistory.map(m => `
-                                <div class="match-history-item">
-                                    <div class="h-team">
-                                        <img class="h-logo" src="${m.opponent.logo}" onerror="this.src='https://via.placeholder.com/24'">
-                                        ${m.opponent.name}
-                                    </div>
-                                    <div class="h-score">${m.score}</div>
-                                    <div class="h-result ${m.result}">⏳ Ожидание</div>
-                                    <div class="h-round">Раунд ${m.round}</div>
-                                </div>
-                            `).join('')}
+                            <div class="match-history-empty">📭 Нет сыгранных матчей</div>
                         </div>
                     </div>
                     <div class="egl-sidebar-column">
                         <div class="egl-card">
                             <div class="egl-card-title">Статистика</div>
                             <div class="egl-stat-row"><span class="egl-stat-label">Винрейт</span><span class="egl-stat-value">${team.overallWinrate}%</span></div>
-                            <div class="egl-stat-row"><span class="egl-stat-label">Игр</span><span class="egl-stat-value highlight">${matchHistory.length}</span></div>
+                            <div class="egl-stat-row"><span class="egl-stat-label">Игр</span><span class="egl-stat-value highlight">0</span></div>
                             <div class="egl-stat-row"><span class="egl-stat-label">Победы/Поражения</span><span class="egl-stat-value">0 / 0</span></div>
                             <div class="egl-stat-row"><span class="egl-stat-label">Средний K/D</span><span class="egl-stat-value">0.00</span></div>
                         </div>
