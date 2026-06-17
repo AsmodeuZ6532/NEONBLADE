@@ -18,6 +18,15 @@
             --egl-accent-orange: #e56b1f;
             --egl-row-hover: #f0f3f7;
             --toast-bg: #1e293b;
+            --egl-player-tag-bg: #f0f2f5;
+            --egl-player-tag-border: #dcdfe4;
+            --egl-player-tag-color: #4c5664;
+            --egl-card-bg: #ffffff;
+            --egl-meta-pill-bg: rgba(0,0,0,0.05);
+            --egl-meta-pill-border: rgba(0,0,0,0.1);
+            --egl-meta-pill-color: #626d7c;
+            --egl-stat-value-color: #1b222c;
+            --egl-map-card-bg: #f0f2f5;
         }
 
         body.dark-theme {
@@ -33,6 +42,15 @@
             --egl-accent-orange: #f0883e;
             --egl-row-hover: #1c2333;
             --toast-bg: #0d1117;
+            --egl-player-tag-bg: #21262d;
+            --egl-player-tag-border: #30363d;
+            --egl-player-tag-color: #c9d1d9;
+            --egl-card-bg: #161b22;
+            --egl-meta-pill-bg: rgba(255,255,255,0.07);
+            --egl-meta-pill-border: rgba(255,255,255,0.1);
+            --egl-meta-pill-color: #8b949e;
+            --egl-stat-value-color: #e6edf3;
+            --egl-map-card-bg: #21262d;
         }
 
         * {
@@ -290,12 +308,12 @@
             color: var(--egl-text-grey);
         }
         .player-tag {
-            background-color: #f0f2f5;
+            background-color: var(--egl-player-tag-bg);
             padding: 2px 8px;
             border-radius: 3px;
-            border: 1px solid #dcdfe4;
+            border: 1px solid var(--egl-player-tag-border);
             font-weight: 600;
-            color: #4c5664;
+            color: var(--egl-player-tag-color);
             transition: all 0.2s ease;
             cursor: pointer;
         }
@@ -332,11 +350,11 @@
             margin-bottom: 5px;
         }
         .stat-row-value.points-count {
-            color: var(--egl-accent-blue);
-            background-color: #eef2f8;
+            color: var(--egl-text-dark);
+            background-color: var(--egl-box-header);
             padding: 1px 6px;
             border-radius: 3px;
-            border: 1px solid #d3dee0;
+            border: 1px solid var(--egl-border);
             font-size: 12px;
         }
         .stat-row-value.tier-badge {
@@ -361,7 +379,6 @@
             display: flex;
             align-items: center;
             gap: 24px;
-            color: #ffffff;
             border-bottom: 3px solid var(--egl-accent-orange);
             box-shadow: 0 2px 8px rgba(0,0,0,0.12);
         }
@@ -370,7 +387,7 @@
             height: 90px;
             background-color: #0d0f12;
             border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--egl-border);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -384,23 +401,27 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 8px;
-            color: #ffffff;
+            color: var(--egl-text-dark);
         }
         .egl-team-header-meta {
             display: flex;
             flex-wrap: wrap;
             gap: 16px;
             font-size: 12px;
-            color: #9aa4af;
+            color: var(--egl-meta-pill-color);
         }
         .egl-meta-pill {
-            background-color: rgba(255, 255, 255, 0.07);
+            background-color: var(--egl-meta-pill-bg);
             padding: 4px 10px;
             border-radius: 3px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--egl-meta-pill-border);
             font-weight: 600;
+            color: var(--egl-meta-pill-color);
         }
-        .egl-meta-pill span { color: #ffffff; font-weight: 700; }
+        .egl-meta-pill span { 
+            color: var(--egl-text-dark); 
+            font-weight: 700; 
+        }
         .egl-profile-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -408,7 +429,7 @@
             margin-top: 20px;
         }
         .egl-card {
-            background-color: var(--egl-box-bg);
+            background-color: var(--egl-card-bg);
             border: 1px solid var(--egl-border);
             border-radius: 4px;
             margin-bottom: 20px;
@@ -432,7 +453,7 @@
             padding: 16px;
         }
         .egl-player-card {
-            background-color: var(--egl-box-bg);
+            background-color: var(--egl-card-bg);
             border: 1px solid var(--egl-border);
             border-radius: 4px;
             padding: 12px 6px;
@@ -494,7 +515,10 @@
         }
         .egl-stat-row:last-child { border-bottom: none; }
         .egl-stat-label { color: var(--egl-text-grey); font-weight: 600; }
-        .egl-stat-value { font-weight: 700; color: var(--egl-text-dark); }
+        .egl-stat-value { 
+            font-weight: 700; 
+            color: var(--egl-stat-value-color); 
+        }
         .egl-stat-value.highlight { color: var(--egl-accent-blue); }
         .player-stats-modal-overlay {
             position: fixed;
@@ -551,6 +575,25 @@
         }
         .modal-close-btn:hover { background: var(--egl-accent-orange); }
         .hidden { display: none; }
+        
+        /* Стили для карт в профиле */
+        .map-card {
+            background: var(--egl-map-card-bg);
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid var(--egl-border);
+        }
+        .map-card .map-name {
+            font-size: 12px;
+            color: var(--egl-text-grey);
+        }
+        .map-card .map-wr {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--egl-accent-orange);
+        }
+        
         @media (max-width: 768px) {
             .egl-profile-grid { grid-template-columns: 1fr; gap: 15px; }
             .egl-roster-flex { grid-template-columns: repeat(3, 1fr); }
@@ -648,10 +691,10 @@
               mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) }
         ];
 
-        // Фиксированные команды #14, #15, #16
+        // НОВАЯ КОМАНДА LoyTabTeam вместо #14
         const teamsLast3 = [
-            { id: 14, name: "❓ Команда #14", logo: "https://via.placeholder.com/50", tier: "Tier 3", points: 0, overallWinrate: 0,
-              players: { main: ["❓", "❓", "❓", "❓", "❓"], bench: [] },
+            { id: 14, name: "LoyTabTeam", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516750874251100220/image.png?ex=6a33c7d4&is=6a327654&hm=90d482ac038ee744b356bdbfc8ebf2f7eb3c06946cf9bed454a527b3438b69b2&", tier: "Tier 3", points: 0, overallWinrate: 0,
+              players: { main: ["Rizzo", "Tazzik", "dan1kek", "Mamba", "Freez1s"], bench: [] },
               mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
             { id: 15, name: "❓ Команда #15", logo: "https://via.placeholder.com/50", tier: "Tier 3", points: 0, overallWinrate: 0,
               players: { main: ["❓", "❓", "❓", "❓", "❓"], bench: [] },
@@ -761,9 +804,9 @@
                             <div class="egl-card-title">Винрейт по картам</div>
                             <div style="padding:16px; display:grid; grid-template-columns:1fr 1fr; gap:8px;">
                                 ${team.mapWinrates.map(m => `
-                                    <div style="background:var(--egl-box-header); padding:8px; border-radius:4px; text-align:center; border:1px solid var(--egl-border);">
-                                        <div style="font-size:12px; color:var(--egl-text-grey);">${m.map}</div>
-                                        <div style="font-size:18px; font-weight:700; color:var(--egl-accent-orange);">${m.wr}%</div>
+                                    <div class="map-card">
+                                        <div class="map-name">${m.map}</div>
+                                        <div class="map-wr">${m.wr}%</div>
                                     </div>
                                 `).join('')}
                             </div>
