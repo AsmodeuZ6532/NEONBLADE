@@ -197,7 +197,6 @@
             padding: 0 20px;
         }
 
-        /* ===== ВКЛАДКИ ===== */
         .tabs-container {
             display: flex;
             gap: 0;
@@ -229,7 +228,6 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* ===== РЕЙТИНГ ===== */
         .ranking-header {
             font-size: 24px;
             font-weight: 700;
@@ -348,12 +346,13 @@
             margin-bottom: 5px;
         }
         .stat-row-value.points-count {
-            color: var(--egl-text-dark);
-            background-color: var(--egl-box-header);
+            color: var(--egl-accent-orange);
+            background-color: rgba(229, 107, 31, 0.12);
             padding: 1px 6px;
             border-radius: 3px;
-            border: 1px solid var(--egl-border);
+            border: 1px solid rgba(229, 107, 31, 0.25);
             font-size: 12px;
+            font-weight: 700;
         }
         .stat-row-value.tier-badge {
             color: #ffffff;
@@ -363,8 +362,16 @@
             font-size: 11px;
             text-transform: uppercase;
         }
+        .stat-row-value.elo-badge {
+            color: var(--egl-text-dark);
+            background-color: var(--egl-box-header);
+            padding: 1px 6px;
+            border-radius: 3px;
+            border: 1px solid var(--egl-border);
+            font-size: 11px;
+            font-weight: 600;
+        }
 
-        /* ===== МАТЧИ ===== */
         .matches-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -382,7 +389,13 @@
             gap: 6px;
         }
         .match-card:hover { border-color: var(--egl-accent-blue); background: var(--egl-row-hover); }
-        .match-teams { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+        .match-teams { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+            width: 100%;
+        }
         .match-team {
             display: flex;
             align-items: center;
@@ -392,7 +405,8 @@
             flex: 1;
             min-width: 0;
         }
-        .match-team:last-child { justify-content: flex-end; }
+        .match-team:first-child { justify-content: flex-end; }
+        .match-team:last-child { justify-content: flex-start; }
         .match-team .team-logo {
             width: 32px;
             height: 32px;
@@ -403,14 +417,14 @@
             flex-shrink: 0;
         }
         .match-team .team-name { color: var(--egl-text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .match-vs { color: var(--egl-text-grey); font-weight: 700; font-size: 12px; padding: 0 6px; flex-shrink: 0; }
-        .match-score {
+        .match-score-center {
             font-weight: 700;
-            font-size: 14px;
-            color: var(--egl-accent-blue);
-            padding: 0 8px;
+            font-size: 16px;
+            color: var(--egl-accent-orange);
+            padding: 0 4px;
             flex-shrink: 0;
         }
+        .match-vs { color: var(--egl-text-grey); font-weight: 700; font-size: 12px; padding: 0 4px; flex-shrink: 0; }
         .match-status {
             display: flex;
             justify-content: space-between;
@@ -431,10 +445,9 @@
         }
         .match-status .status-badge.live { background: #da3633; color: #ffffff; animation: pulse 1.5s infinite; }
         .match-status .status-badge.finished { background: #2ea043; color: #ffffff; }
-        .match-stage { font-weight: 600; font-size: 11px; color: var(--egl-accent-orange); }
+        .match-stage { font-weight: 600; font-size: 11px; color: var(--egl-accent-blue); }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
-        /* ===== ТУРНИР ===== */
         .tournament-header {
             background: var(--egl-box-bg);
             border: 1px solid var(--egl-border);
@@ -518,7 +531,7 @@
         .swiss-match .match-score {
             font-weight: 700;
             font-size: 13px;
-            color: var(--egl-accent-blue);
+            color: var(--egl-accent-orange);
             padding: 0 6px;
             white-space: nowrap;
         }
@@ -541,8 +554,13 @@
             background: rgba(218, 54, 51, 0.15);
             color: var(--egl-accent-red);
         }
+        .swiss-match .match-stage {
+            font-size: 11px;
+            color: var(--egl-accent-blue);
+            font-weight: 600;
+            padding: 0 8px;
+        }
 
-        /* ===== ИТОГИ ===== */
         .swiss-results {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -574,7 +592,6 @@
         .swiss-results .result-item:last-child { border-bottom: none; }
         .swiss-results .result-item .record { font-weight: 700; color: var(--egl-accent-blue); }
 
-        /* ===== ПРИЗОВЫЕ МЕСТА (ВНУТРИ ТУРНИРА) ===== */
         .prize-container {
             background: var(--egl-box-bg);
             border: 1px solid var(--egl-border);
@@ -636,7 +653,6 @@
             color: var(--egl-prize-bronze);
         }
 
-        /* ===== ПРОФИЛЬ ===== */
         .back-link-container { margin-bottom: 16px; }
         .egl-back-btn {
             background: none; border: none; color: var(--egl-accent-blue);
@@ -751,12 +767,75 @@
         .egl-stat-value { font-weight: 700; color: var(--egl-stat-value-color); }
         .egl-stat-value.highlight { color: var(--egl-accent-blue); }
 
-        /* ===== ИСТОРИЯ МАТЧЕЙ (ПУСТАЯ) ===== */
         .match-history-empty {
             padding: 20px;
             text-align: center;
             color: var(--egl-text-grey);
             font-size: 13px;
+        }
+        .match-history-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+            border-bottom: 1px solid var(--egl-border);
+            font-size: 13px;
+        }
+        .match-history-item:last-child { border-bottom: none; }
+        .match-history-item .h-team {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            min-width: 140px;
+        }
+        .match-history-item .h-team .h-logo {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            object-fit: contain;
+            background: #0d0f12;
+            border: 1px solid var(--egl-border);
+        }
+        .match-history-item .h-score {
+            font-weight: 700;
+            color: var(--egl-accent-orange);
+            padding: 0 16px;
+            min-width: 60px;
+            text-align: center;
+        }
+        .match-history-item .h-result {
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 11px;
+            min-width: 90px;
+            text-align: center;
+        }
+        .match-history-item .h-result.pending {
+            background: var(--egl-box-header);
+            color: var(--egl-text-grey);
+        }
+        .match-history-item .h-result.win {
+            background: rgba(46, 160, 67, 0.15);
+            color: var(--egl-accent-green);
+        }
+        .match-history-item .h-result.loss {
+            background: rgba(218, 54, 51, 0.15);
+            color: var(--egl-accent-red);
+        }
+        .match-history-item .h-stage {
+            font-size: 11px;
+            color: var(--egl-accent-blue);
+            font-weight: 600;
+            min-width: 40px;
+            text-align: center;
+        }
+        .match-history-item .h-round {
+            font-size: 11px;
+            color: var(--egl-text-grey);
+            min-width: 50px;
+            text-align: center;
         }
 
         .map-card { background: var(--egl-map-card-bg); padding: 8px; border-radius: 4px; text-align: center; border: 1px solid var(--egl-border); }
@@ -765,7 +844,6 @@
 
         .hidden { display: none; }
 
-        /* ===== МОДАЛЬНЫЕ ОКНА ===== */
         .match-modal-overlay {
             position: fixed;
             top: 0;
@@ -1006,81 +1084,248 @@
 
     <script>
         // ============================================
-        // 16 КОМАНД (ОБНОВЛЁН Stinky Roosters Team)
+        // 16 КОМАНД
         // ============================================
         const allMaps = ["Mirage", "Dust2", "Ancient", "Anubis", "Nuke", "Overpass", "Inferno", "Cache"];
         
-        function shuffleArray(arr) {
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
+        // Функция для получения винрейта по картам
+        function getMapWinrate(teamName, mapName) {
+            // Команды без карт (ТП) — 0%
+            const noMapTeams = ["RayZen", "Luminary team", "PAW PAW TEAM", "LoyTabTeam", "VELNORA", "The GeorgianZ"];
+            if (noMapTeams.includes(teamName)) {
+                return 0;
             }
-            return arr;
+            
+            // Победители на картах
+            const mapWinners = {
+                "Mirage": ["Team Raptors", "HAWKS"],
+                "Dust2": ["X TEAM"],
+                "Anubis": ["dignitas team", "Arc Esports"]
+            };
+            
+            if (mapWinners[mapName] && mapWinners[mapName].includes(teamName)) {
+                return 100;
+            }
+            
+            // Команды, которые играли на этой карте и проиграли
+            const mapLosers = {
+                "Mirage": ["Viper Academy", "EXTAR TEAM"],
+                "Dust2": ["Nova Impera"],
+                "Anubis": ["Stinky Roosters Team", "N3TEAM"]
+            };
+            
+            if (mapLosers[mapName] && mapLosers[mapName].includes(teamName)) {
+                return 0;
+            }
+            
+            return 0;
         }
 
+        // ===== СТАТИСТИКА ИГРОКОВ =====
+        const playerStats = {
+            "Faza": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "Shirou": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "mizuka": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "xaaR": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "wks": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "s а у S": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "Ve1sEr": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "Wea1th": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "N0L": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "r0sh3n": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "L1zord": { rating: 1.86, k: 27, d: 12, a: 5, rounds: 21 },
+            "ZOTIX qr0teX": { rating: 1.34, k: 17, d: 15, a: 9, rounds: 21 },
+            "lfk": { rating: 1.30, k: 18, d: 12, a: 5, rounds: 21 },
+            "Webサイト": { rating: 0.86, k: 11, d: 14, a: 4, rounds: 21 },
+            "kudokoshi666": { rating: 0.72, k: 11, d: 15, a: 2, rounds: 21 },
+            "Vareim": { rating: 1.24, k: 20, d: 18, a: 6, rounds: 21 },
+            "xXx": { rating: 1.01, k: 17, d: 16, a: 4, rounds: 21 },
+            "sprInq": { rating: 0.82, k: 13, d: 15, a: 4, rounds: 21 },
+            "Koma": { rating: 0.62, k: 10, d: 18, a: 4, rounds: 21 },
+            "zun1xx": { rating: 0.56, k: 8, d: 17, a: 6, rounds: 21 },
+            "l1wenfn": { rating: 1.30, k: 28, d: 19, a: 6, rounds: 36 },
+            "smolik": { rating: 1.20, k: 33, d: 27, a: 8, rounds: 36 },
+            "kk15": { rating: 1.19, k: 32, d: 26, a: 13, rounds: 36 },
+            "w0rst1k": { rating: 0.95, k: 25, d: 27, a: 10, rounds: 36 },
+            "Flex": { rating: 0.94, k: 21, d: 22, a: 10, rounds: 36 },
+            "telent": { rating: 1.86, k: 48, d: 22, a: 5, rounds: 36 },
+            "w1zz": { rating: 0.89, k: 24, d: 29, a: 7, rounds: 36 },
+            "Qw1zzy": { rating: 0.82, k: 22, d: 29, a: 5, rounds: 36 },
+            "N0me": { rating: 0.49, k: 11, d: 30, a: 12, rounds: 36 },
+            "ha1parek": { rating: 0.49, k: 11, d: 30, a: 6, rounds: 36 },
+            "ustupidorogu": { rating: 2.25, k: 20, d: 5, a: 4, rounds: 13 },
+            "zerotoler": { rating: 1.83, k: 21, d: 6, a: 2, rounds: 13 },
+            "exxiL1s": { rating: 1.43, k: 10, d: 5, a: 2, rounds: 13 },
+            "Шk1per": { rating: 1.30, k: 6, d: 4, a: 2, rounds: 13 },
+            "ShkrAbs": { rating: 0.88, k: 6, d: 8, a: 2, rounds: 13 },
+            "dezzz333": { rating: 0.66, k: 6, d: 12, a: 2, rounds: 13 },
+            "J33rty": { rating: 0.60, k: 7, d: 13, a: 2, rounds: 13 },
+            "M1kas0": { rating: 0.51, k: 5, d: 13, a: 3, rounds: 13 },
+            "Neym0n": { rating: 0.51, k: 5, d: 13, a: 2, rounds: 13 },
+            "MBK-": { rating: 0.48, k: 5, d: 12, a: 1, rounds: 13 },
+            "suf1m0chka": { rating: 1.55, k: 26, d: 15, a: 2, rounds: 23 },
+            "Waysky666": { rating: 1.20, k: 20, d: 16, a: 7, rounds: 23 },
+            "c0tiq": { rating: 1.09, k: 17, d: 15, a: 2, rounds: 23 },
+            "nk1r": { rating: 0.93, k: 13, d: 14, a: 1, rounds: 23 },
+            "tyopaax": { rating: 0.75, k: 9, d: 13, a: 5, rounds: 23 },
+            "gendix X": { rating: 1.11, k: 19, d: 17, a: 5, rounds: 23 },
+            "Monax0_0": { rating: 1.05, k: 17, d: 16, a: 7, rounds: 23 },
+            "carber": { rating: 0.90, k: 14, d: 16, a: 3, rounds: 23 },
+            "гейовер)": { rating: 0.79, k: 13, d: 18, a: 4, rounds: 23 },
+            "Wetzziopq": { rating: 0.67, k: 10, d: 17, a: 4, rounds: 23 },
+            "Paradox": { rating: 1.77, k: 20, d: 9, a: 7, rounds: 19 },
+            "spectrum": { rating: 1.28, k: 17, d: 11, a: 3, rounds: 19 },
+            "defo": { rating: 1.06, k: 14, d: 13, a: 7, rounds: 19 },
+            "wertix": { rating: 1.05, k: 12, d: 10, a: 4, rounds: 19 },
+            "m4ngo644": { rating: 1.03, k: 11, d: 10, a: 2, rounds: 19 },
+            "Droneks": { rating: 1.10, k: 17, d: 14, a: 3, rounds: 19 },
+            "-sh4t": { rating: 0.68, k: 10, d: 15, a: 1, rounds: 19 },
+            "winamp": { rating: 0.59, k: 8, d: 15, a: 4, rounds: 19 },
+            "conf1dent": { rating: 0.58, k: 8, d: 15, a: 5, rounds: 19 },
+            "Marcelo": { rating: 0.57, k: 8, d: 15, a: 3, rounds: 19 },
+            "fast": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "Dragan": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "s3d": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "h3lly": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "shaura": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "Rizzo": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "Tazzik": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "dan1kek": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "Mamba": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "Freez1s": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "St1mp": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "sp1der": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "Takeda": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "+W": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "k-_- d": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "deme999": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "shadow": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "lobjana": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "devdara": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "luka": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "Kudokoshi": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "l1zord": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "web": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "grotex": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "19": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "spr1ng": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "hxcd": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "Degaster": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "saysay": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "kozinak": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "icekillerr": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "spider1223": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "deluuxeee": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "st1mp0593": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "hava29": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "Fada": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "famaus": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "Kyosuk3": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "skywall": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "osuke": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "tigrinis1234": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "luna": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "vs-aim": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "vs-gorekha292": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 },
+            "main character": { rating: 0.00, k: 0, d: 0, a: 0, rounds: 0 }
+        };
+
+        function getPlayerStats(playerName) {
+            const stats = playerStats[playerName];
+            if (stats && stats.rounds > 0) {
+                const kd = stats.d > 0 ? (stats.k / stats.d).toFixed(2) : "0.00";
+                const kpr = (stats.k / stats.rounds).toFixed(2);
+                const dpr = (stats.d / stats.rounds).toFixed(2);
+                return {
+                    rating: stats.rating.toFixed(2),
+                    k: stats.k,
+                    d: stats.d,
+                    a: stats.a,
+                    kd: kd,
+                    kpr: kpr,
+                    dpr: dpr,
+                    rounds: stats.rounds
+                };
+            }
+            return { rating: "0.00", k: 0, d: 0, a: 0, kd: "0.00", kpr: "0.00", dpr: "0.00", rounds: 0 };
+        }
+
+        // ===== КОМАНДЫ С ВИНРЕЙТОМ ПО КАРТАМ =====
         const allTeams = [
-            { id: 1, name: "PAW PAW TEAM", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516786020379656333/38_20260612143143.png?ex=6a33e88f&is=6a32970f&hm=878617abc9ff52f03d98a022906a7172324da5bdde2cf5291c74927d6966f71b&", tier: "Tier 3", points: 0, overallWinrate: 0,
+            { id: 1, name: "PAW PAW TEAM", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516786020379656333/38_20260612143143.png?ex=6a33e88f&is=6a32970f&hm=878617abc9ff52f03d98a022906a7172324da5bdde2cf5291c74927d6966f71b&", tier: "Tier 3", points: 100, wins: 1, losses: 0, overallWinrate: 100,
               players: { main: ["fast", "Dragan", "s3d", "h3lly", "shaura"], bench: [] },
               mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 2, name: "Arc Esports", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516736370800857169/BFFD4E3A-DCDC-4E7C-8837-1EF01784CF3F.png?ex=6a33ba52&is=6a3268d2&hm=8b0091da231b9fb80f2223947346b56518bdae509fe1d9ef13f7a09f8d7a7611&", tier: "Tier 3", points: 0, overallWinrate: 0,
-              players: { main: ["Kudokoshi", "l1zord", "web", "lfk", "grotex"], bench: ["kozinak"] },
-              mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 3, name: "VELNORA", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516448862569627658/image.png?ex=6a33574f&is=6a3205cf&hm=ddeabe95665232f377401095ff4c6a68b8d8f3e936d2325003cf6ead413c80f4&", tier: "Tier 3", points: 0, overallWinrate: 0,
+            { id: 2, name: "Arc Esports", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516736370800857169/BFFD4E3A-DCDC-4E7C-8837-1EF01784CF3F.png?ex=6a33ba52&is=6a3268d2&hm=8b0091da231b9fb80f2223947346b56518bdae509fe1d9ef13f7a09f8d7a7611&", tier: "Tier 3", points: 100, wins: 1, losses: 0, overallWinrate: 100,
+              players: { main: ["L1zord", "ZOTIX qr0teX", "lfk", "Webサイト", "kudokoshi666"], bench: ["kozinak"] },
+              mapWinrates: allMaps.map(map => ({ map: map, wr: getMapWinrate("Arc Esports", map.map) })) },
+            { id: 3, name: "VELNORA", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516448862569627658/image.png?ex=6a33574f&is=6a3205cf&hm=ddeabe95665232f377401095ff4c6a68b8d8f3e936d2325003cf6ead413c80f4&", tier: "Tier 3", points: 100, wins: 1, losses: 0, overallWinrate: 100,
               players: { main: ["St1mp", "sp1der", "Takeda", "+W", "k-_- d"], bench: ["icekillerr", "spider1223", "deluuxeee", "st1mp0593", "hava29"] },
               mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 4, name: "Nova Impera", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516436861000876032/image.png?ex=6a334c21&is=6a31faa1&hm=2fa722130ca997b9c957eadca0358b4d6e8429002a34dd3e54d3ee6738cdaf68&", tier: "Tier 3", points: 0, overallWinrate: 0,
-              players: { main: ["Marcelo", "Droneks", "M4Tr1X", "-sh4t", "conf1dent"], bench: ["winamp", "saysay"] },
-              mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 5, name: "HAWKS", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516476141895159959/555555555555.png?ex=6a3370b6&is=6a321f36&hm=47ec34cd65d2c695ee1bbeed27e6ba977df206241ef4dc619ed50b547a63bad1&", tier: "Tier 3", points: 0, overallWinrate: 0,
-              players: { main: ["smolik", "kk15", "l1wenfn", "flex", "w0rst1k"], bench: [] },
-              mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 6, name: "Team Raptors", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516437544206860478/IMG_1281.jpg?ex=6a334cc4&is=6a31fb44&hm=e73f094c1d37847762813f3dac6a0c4873ea43a9fe865d213398d125b219c95d&", tier: "Tier 3", points: 0, overallWinrate: 0,
+            { id: 4, name: "Nova Impera", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516436861000876032/image.png?ex=6a334c21&is=6a31faa1&hm=2fa722130ca997b9c957eadca0358b4d6e8429002a34dd3e54d3ee6738cdaf68&", tier: "Tier 3", points: 0, wins: 0, losses: 1, overallWinrate: 0,
+              players: { main: ["Marcelo", "Droneks", "winamp", "-sh4t", "conf1dent"], bench: ["hxcd", "Degaster", "saysay"] },
+              mapWinrates: allMaps.map(map => ({ map: map, wr: getMapWinrate("Nova Impera", map.map) })) },
+            { id: 5, name: "HAWKS", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516476141895159959/555555555555.png?ex=6a3370b6&is=6a321f36&hm=47ec34cd65d2c695ee1bbeed27e6ba977df206241ef4dc619ed50b547a63bad1&", tier: "Tier 3", points: 100, wins: 1, losses: 0, overallWinrate: 100,
+              players: { main: ["smolik", "kk15", "l1wenfn", "Flex", "w0rst1k"], bench: [] },
+              mapWinrates: allMaps.map(map => ({ map: map, wr: getMapWinrate("HAWKS", map.map) })) },
+            { id: 6, name: "Team Raptors", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516437544206860478/IMG_1281.jpg?ex=6a334cc4&is=6a31fb44&hm=e73f094c1d37847762813f3dac6a0c4873ea43a9fe865d213398d125b219c95d&", tier: "Tier 3", points: 100, wins: 1, losses: 0, overallWinrate: 100,
               players: { main: ["ustupidorogu", "zerotoler", "Шk1per", "exxiL1s", "ShkrAbs"], bench: [] },
-              mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 7, name: "EXTAR TEAM", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516528232856551444/55454.jpg?ex=6a33a13a&is=6a324fba&hm=0518d9693dc1c83e71e4a715bbbebb9c78d43aed3b160a861b0462ad63f1bb2b&", tier: "Tier 3", points: 0, overallWinrate: 0,
-              players: { main: ["w1zz", "19", "ha1parek", "N0me", "Qw1zzy"], bench: [] },
-              mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 8, name: "X TEAM", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516545519457931374/cachedImage.png?ex=6a330893&is=6a31b713&hm=bdf225ac90ab2a3da06a66442c762deb52586af10bfa16ee1d5ce20ead8476ce&", tier: "Tier 3", points: 0, overallWinrate: 0,
+              mapWinrates: allMaps.map(map => ({ map: map, wr: getMapWinrate("Team Raptors", map.map) })) },
+            { id: 7, name: "EXTAR TEAM", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516528232856551444/55454.jpg?ex=6a33a13a&is=6a324fba&hm=0518d9693dc1c83e71e4a715bbbebb9c78d43aed3b160a861b0462ad63f1bb2b&", tier: "Tier 3", points: 0, wins: 0, losses: 1, overallWinrate: 0,
+              players: { main: ["w1zz", "19", "ha1parek", "N0me", "Qw1zzy"], bench: ["telent"] },
+              mapWinrates: allMaps.map(map => ({ map: map, wr: getMapWinrate("EXTAR TEAM", map.map) })) },
+            { id: 8, name: "X TEAM", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516545519457931374/cachedImage.png?ex=6a330893&is=6a31b713&hm=bdf225ac90ab2a3da06a66442c762deb52586af10bfa16ee1d5ce20ead8476ce&", tier: "Tier 3", points: 100, wins: 1, losses: 0, overallWinrate: 100,
               players: { main: ["spectrum", "m4ngo644", "defo", "wertix", "Paradox"], bench: ["main character"] },
-              mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 9, name: "RayZen", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516507939354050580/a6040f41b86e5b70.png?ex=6a338e54&is=6a323cd4&hm=c0777a916b2d9e46e6d218eb41cbf9c0f4ff9e5fe3ad8dc5465ecf2a474cac09&", tier: "Tier 3", points: 0, overallWinrate: 0,
+              mapWinrates: allMaps.map(map => ({ map: map, wr: getMapWinrate("X TEAM", map.map) })) },
+            { id: 9, name: "RayZen", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516507939354050580/a6040f41b86e5b70.png?ex=6a338e54&is=6a323cd4&hm=c0777a916b2d9e46e6d218eb41cbf9c0f4ff9e5fe3ad8dc5465ecf2a474cac09&", tier: "Tier 3", points: 100, wins: 1, losses: 0, overallWinrate: 100,
               players: { main: ["Faza", "Shirou", "mizuka", "xaaR", "wks"], bench: ["Fada", "famaus"] },
               mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 10, name: "Viper Academy", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516495783325859911/IMG_20260616_160340_800.jpg?ex=6a338301&is=6a323181&hm=eca8fceb4cdcccc086dd075b2a148796d061ce1604ec7707042069e6b4367752&", tier: "Tier 3", points: 0, overallWinrate: 0,
+            { id: 10, name: "Viper Academy", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516495783325859911/IMG_20260616_160340_800.jpg?ex=6a338301&is=6a323181&hm=eca8fceb4cdcccc086dd075b2a148796d061ce1604ec7707042069e6b4367752&", tier: "Tier 3", points: 0, wins: 0, losses: 1, overallWinrate: 0,
               players: { main: ["J33rty", "MBK-", "dezzz333", "M1kas0", "Neym0n"], bench: ["Kyosuk3", "skywall", "osuke"] },
-              mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 11, name: "Luminary team", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516455596533088327/image.png?ex=6a335d94&is=6a320c14&hm=35400f72c7e969dfa383288d3891743c0dae4f4f23712808872c3034c1d3ced4&", tier: "Tier 3", points: 0, overallWinrate: 0,
+              mapWinrates: allMaps.map(map => ({ map: map, wr: getMapWinrate("Viper Academy", map.map) })) },
+            { id: 11, name: "Luminary team", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516455596533088327/image.png?ex=6a335d94&is=6a320c14&hm=35400f72c7e969dfa383288d3891743c0dae4f4f23712808872c3034c1d3ced4&", tier: "Tier 3", points: 0, wins: 0, losses: 1, overallWinrate: 0,
               players: { main: ["s а у S", "Ve1sEr", "Wea1th", "N0L", "r0sh3n"], bench: ["tigrinis1234"] },
               mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 12, name: "N3TEAM", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516462408300761200/N3Team.png?ex=6a3363ec&is=6a32126c&hm=af300d733e2a1f0024bcb8fb0f6f6f0ec89be30fc720c93ab1c7ae14c8066934&", tier: "Tier 3", points: 0, overallWinrate: 0,
-              players: { main: ["spr1ng", "zun1xx", "Vareim", "Koma", "xXx"], bench: [] },
-              mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 13, name: "The GeorgianZ", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516528486351900792/Gz_academy.png?ex=6a33a176&is=6a324ff6&hm=077f48cca85edc54b6f2cba87cdd633a9bbf31a3875aa7cb04256216c2e04a66&", tier: "Tier 3", points: 0, overallWinrate: 0,
+            { id: 12, name: "N3TEAM", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516462408300761200/N3Team.png?ex=6a3363ec&is=6a32126c&hm=af300d733e2a1f0024bcb8fb0f6f6f0ec89be30fc720c93ab1c7ae14c8066934&", tier: "Tier 3", points: 0, wins: 0, losses: 1, overallWinrate: 0,
+              players: { main: ["Vareim", "xXx", "sprInq", "Koma", "zun1xx"], bench: [] },
+              mapWinrates: allMaps.map(map => ({ map: map, wr: getMapWinrate("N3TEAM", map.map) })) },
+            { id: 13, name: "The GeorgianZ", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516528486351900792/Gz_academy.png?ex=6a33a176&is=6a324ff6&hm=077f48cca85edc54b6f2cba87cdd633a9bbf31a3875aa7cb04256216c2e04a66&", tier: "Tier 3", points: 0, wins: 0, losses: 1, overallWinrate: 0,
               players: { main: ["deme999", "shadow", "lobjana", "devdara", "luka"], bench: ["luna", "vs-aim", "vs-gorekha292"] },
               mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 14, name: "Stinky Roosters Team", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516517808404431210/srlogo.jpg?ex=6a339785&is=6a324605&hm=70cb000e34cd626be11d37159756341661223778e3f3a425ab9270bb214e8b54&", tier: "Tier 3", points: 0, overallWinrate: 0,
-              players: { main: ["carber", "Wetzziopq", "Monax", "gameover", "Tequmery"], bench: ["asji", "L1nex"] },
-              mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 15, name: "dignitas team", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516756790170357872/i_3.webp?ex=6a33cd56&is=6a327bd6&hm=aa3705e7ce7b575f1d30137ea3ef2ab638a12237a6cc54e06b54f256866d402e&", tier: "Tier 3", points: 0, overallWinrate: 0,
-              players: { main: ["c0tiq", "sos1c", "tyopaxx", "nk1r", "Waysky666"], bench: [] },
-              mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) },
-            { id: 16, name: "LoyTabTeam", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516750874251100220/image.png?ex=6a33c7d4&is=6a327654&hm=90d482ac038ee744b356bdbfc8ebf2f7eb3c06946cf9bed454a527b3438b69b2&", tier: "Tier 3", points: 0, overallWinrate: 0,
+            { id: 14, name: "Stinky Roosters Team", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516517808404431210/srlogo.jpg?ex=6a339785&is=6a324605&hm=70cb000e34cd626be11d37159756341661223778e3f3a425ab9270bb214e8b54&", tier: "Tier 3", points: 0, wins: 0, losses: 1, overallWinrate: 0,
+              players: { main: ["Monax0_0", "carber", "гейовер)", "tyopaax", "Wetzziopq"], bench: [] },
+              mapWinrates: allMaps.map(map => ({ map: map, wr: getMapWinrate("Stinky Roosters Team", map.map) })) },
+            { id: 15, name: "dignitas team", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516756790170357872/i_3.webp?ex=6a33cd56&is=6a327bd6&hm=aa3705e7ce7b575f1d30137ea3ef2ab638a12237a6cc54e06b54f256866d402e&", tier: "Tier 3", points: 100, wins: 1, losses: 0, overallWinrate: 100,
+              players: { main: ["suf1m0chka", "Waysky666", "c0tiq", "nk1r", "tyopaax"], bench: [] },
+              mapWinrates: allMaps.map(map => ({ map: map, wr: getMapWinrate("dignitas team", map.map) })) },
+            { id: 16, name: "LoyTabTeam", logo: "https://cdn.discordapp.com/attachments/1496475515278725285/1516750874251100220/image.png?ex=6a33c7d4&is=6a327654&hm=90d482ac038ee744b356bdbfc8ebf2f7eb3c06946cf9bed454a527b3438b69b2&", tier: "Tier 3", points: 0, wins: 0, losses: 1, overallWinrate: 0,
               players: { main: ["Rizzo", "Tazzik", "dan1kek", "Mamba", "Freez1s"], bench: [] },
               mapWinrates: allMaps.map(map => ({ map: map, wr: 0 })) }
         ];
 
-        const teamsData = shuffleArray([...allTeams]);
+        const teamsData = [...allTeams].sort((a, b) => b.points - a.points);
 
-        // ===== МАТЧИ С РАСПИСАНИЕМ =====
-        const matchesSchedule = [
-            { time: "16:00", team1: allTeams[8], team2: allTeams[10] },
-            { time: "16:00", team1: allTeams[12], team2: allTeams[2] },
-            { time: "17:00", team1: allTeams[13], team2: allTeams[14] },
-            { time: "17:00", team1: allTeams[6], team2: allTeams[4] },
-            { time: "18:00", team1: allTeams[9], team2: allTeams[5] },
-            { time: "18:00", team1: allTeams[7], team2: allTeams[3] },
-            { time: "19:00", team1: allTeams[0], team2: allTeams[15] },
-            { time: "19:00", team1: allTeams[1], team2: allTeams[11] }
+        // ===== ИСТОРИЯ МАТЧЕЙ (ТОЛЬКО СЫГРАННЫЕ) =====
+        const matchHistory = [
+            { team1: allTeams[8], team2: allTeams[10], score1: 1, score2: 0, stage: "0:0", time: "16:00" },
+            { team1: allTeams[1], team2: allTeams[11], score1: 13, score2: 8, stage: "0:0", time: "16:00" },
+            { team1: allTeams[14], team2: allTeams[13], score1: 13, score2: 10, stage: "0:0", time: "17:00" },
+            { team1: allTeams[4], team2: allTeams[6], score1: 19, score2: 17, stage: "0:0", time: "17:00" },
+            { team1: allTeams[5], team2: allTeams[9], score1: 13, score2: 0, stage: "0:0", time: "18:00" },
+            { team1: allTeams[7], team2: allTeams[3], score1: 13, score2: 6, stage: "0:0", time: "18:00" },
+            { team1: allTeams[0], team2: allTeams[15], score1: 1, score2: 0, stage: "0:0", time: "19:00" },
+            { team1: allTeams[2], team2: allTeams[12], score1: 1, score2: 0, stage: "0:0", time: "19:00" }
+        ];
+
+        // ===== ПРЕДСТОЯЩИЕ МАТЧИ =====
+        const upcomingMatches = [
+            { team1: allTeams[5], team2: allTeams[7], stage: "1:0", time: "16:00" },
+            { team1: allTeams[4], team2: allTeams[2], stage: "1:0", time: "16:00" },
+            { team1: allTeams[0], team2: allTeams[1], stage: "1:0", time: "17:00" },
+            { team1: allTeams[8], team2: allTeams[14], stage: "1:0", time: "17:00" },
+            { team1: allTeams[9], team2: allTeams[11], stage: "0:1", time: "18:00" },
+            { team1: allTeams[3], team2: allTeams[13], stage: "0:1", time: "18:00" },
+            { team1: allTeams[10], team2: allTeams[12], stage: "0:1", time: "19:00" },
+            { team1: allTeams[6], team2: allTeams[15], stage: "0:1", time: "19:00" }
         ];
 
         // ============================================
@@ -1090,36 +1335,46 @@
             const modal = document.createElement('div');
             modal.className = 'match-modal-overlay';
             
-            const players1 = team1.players.main.map(p => ({ name: p, rating: "0.00" }));
-            const players2 = team2.players.main.map(p => ({ name: p, rating: "0.00" }));
+            const players1 = team1.players.main.map(p => {
+                const stats = getPlayerStats(p);
+                return { name: p, rating: stats.rating, k: stats.k, d: stats.d, a: stats.a };
+            });
+            const players2 = team2.players.main.map(p => {
+                const stats = getPlayerStats(p);
+                return { name: p, rating: stats.rating, k: stats.k, d: stats.d, a: stats.a };
+            });
             
             modal.innerHTML = `
                 <div class="match-modal-content">
                     <div class="match-modal-title">${team1.name} vs ${team2.name}</div>
-                    <div class="match-modal-teams">
-                        <div class="match-modal-team">
-                            <div class="team-logo-big"><img src="${team1.logo}" onerror="this.src='https://via.placeholder.com/64'"></div>
-                            <div class="team-name">${team1.name}</div>
-                            <div class="players-list">
-                                <div class="list-title">Состав</div>
+                    <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:20px; align-items:start;">
+                        <div style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+                            <div style="width:64px; height:64px; border-radius:8px; background:#0d0f12; border:1px solid var(--egl-border); margin:0 auto 8px; overflow:hidden;">
+                                <img src="${team1.logo}" onerror="this.src='https://via.placeholder.com/64'" style="width:100%;height:100%;object-fit:contain;">
+                            </div>
+                            <div style="font-size:16px; font-weight:700; color:var(--egl-accent-blue); margin-bottom:10px;">${team1.name}</div>
+                            <div style="background:var(--egl-box-header); border-radius:8px; padding:8px 12px; width:100%; max-width:220px;">
+                                <div style="font-weight:700; font-size:11px; color:var(--egl-accent-blue); text-align:center; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Состав</div>
                                 ${players1.map(p => `
-                                    <div class="player-row">
-                                        <span class="pname">${p.name}</span>
-                                        <span class="prating">${p.rating}</span>
+                                    <div style="display:flex; justify-content:space-between; padding:2px 4px; border-bottom:1px solid var(--egl-border); font-size:12px;">
+                                        <span style="font-weight:600; color:var(--egl-text-dark);">${p.name}</span>
+                                        <span style="color:var(--egl-accent-orange); font-weight:700;">${p.rating}</span>
                                     </div>
                                 `).join('')}
                             </div>
                         </div>
-                        <div class="match-modal-vs">VS</div>
-                        <div class="match-modal-team">
-                            <div class="team-logo-big"><img src="${team2.logo}" onerror="this.src='https://via.placeholder.com/64'"></div>
-                            <div class="team-name">${team2.name}</div>
-                            <div class="players-list">
-                                <div class="list-title">Состав</div>
+                        <div style="font-size:28px; font-weight:900; color:var(--egl-text-grey); display:flex; align-items:center; justify-content:center; padding-top:40px;">VS</div>
+                        <div style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+                            <div style="width:64px; height:64px; border-radius:8px; background:#0d0f12; border:1px solid var(--egl-border); margin:0 auto 8px; overflow:hidden;">
+                                <img src="${team2.logo}" onerror="this.src='https://via.placeholder.com/64'" style="width:100%;height:100%;object-fit:contain;">
+                            </div>
+                            <div style="font-size:16px; font-weight:700; color:var(--egl-accent-blue); margin-bottom:10px;">${team2.name}</div>
+                            <div style="background:var(--egl-box-header); border-radius:8px; padding:8px 12px; width:100%; max-width:220px;">
+                                <div style="font-weight:700; font-size:11px; color:var(--egl-accent-blue); text-align:center; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Состав</div>
                                 ${players2.map(p => `
-                                    <div class="player-row">
-                                        <span class="pname">${p.name}</span>
-                                        <span class="prating">${p.rating}</span>
+                                    <div style="display:flex; justify-content:space-between; padding:2px 4px; border-bottom:1px solid var(--egl-border); font-size:12px;">
+                                        <span style="font-weight:600; color:var(--egl-text-dark);">${p.name}</span>
+                                        <span style="color:var(--egl-accent-orange); font-weight:700;">${p.rating}</span>
                                     </div>
                                 `).join('')}
                             </div>
@@ -1134,17 +1389,19 @@
         }
 
         function showPlayerStatsModal(playerName, teamName) {
+            const stats = getPlayerStats(playerName);
             const modal = document.createElement('div');
             modal.className = 'player-stats-modal-overlay';
             modal.innerHTML = `
                 <div class="player-stats-modal-content">
                     <div class="modal-player-nick">${playerName}</div>
                     <div class="modal-stats-line"><span class="modal-stats-label">Команда:</span><span class="modal-stats-value">${teamName}</span></div>
-                    <div class="modal-stats-line"><span class="modal-stats-label">Рейтинг 2.0:</span><span class="modal-stats-value">0.00</span></div>
-                    <div class="modal-stats-line"><span class="modal-stats-label">K/D Ratio:</span><span class="modal-stats-value">0.00</span></div>
-                    <div class="modal-stats-line"><span class="modal-stats-label">KPR:</span><span class="modal-stats-value">0.00</span></div>
-                    <div class="modal-stats-line"><span class="modal-stats-label">DPR:</span><span class="modal-stats-value">0.00</span></div>
-                    <div class="modal-stats-line"><span class="modal-stats-label">Сыграно карт:</span><span class="modal-stats-value">0</span></div>
+                    <div class="modal-stats-line"><span class="modal-stats-label">Рейтинг 2.0:</span><span class="modal-stats-value">${stats.rating}</span></div>
+                    <div class="modal-stats-line"><span class="modal-stats-label">K/D Ratio:</span><span class="modal-stats-value">${stats.kd}</span></div>
+                    <div class="modal-stats-line"><span class="modal-stats-label">KPR:</span><span class="modal-stats-value">${stats.kpr}</span></div>
+                    <div class="modal-stats-line"><span class="modal-stats-label">DPR:</span><span class="modal-stats-value">${stats.dpr}</span></div>
+                    <div class="modal-stats-line"><span class="modal-stats-label">K/D/A:</span><span class="modal-stats-value">${stats.k}/${stats.d}/${stats.a}</span></div>
+                    <div class="modal-stats-line"><span class="modal-stats-label">Сыграно раундов:</span><span class="modal-stats-value">${stats.rounds}</span></div>
                     <button class="modal-close-btn">Закрыть</button>
                 </div>
             `;
@@ -1160,27 +1417,101 @@
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.getElementById('profileView').classList.remove('hidden');
             
-            let mainPlayersHtml = team.players.main.map(p => `
-                <div class="egl-player-card" onclick="showPlayerStatsModal('${p}','${team.name}')">
-                    <div class="egl-player-avatar">👤</div>
-                    <div class="egl-player-nick">${p}</div>
-                    <div class="egl-player-sub">основа</div>
-                </div>
-            `).join('');
+            let mainPlayersHtml = team.players.main.map(p => {
+                const stats = getPlayerStats(p);
+                return `
+                    <div class="egl-player-card" onclick="showPlayerStatsModal('${p}','${team.name}')">
+                        <div class="egl-player-avatar">👤</div>
+                        <div class="egl-player-nick">${p}</div>
+                        <div style="font-size:10px; color:var(--egl-accent-orange); font-weight:700;">${stats.rating}</div>
+                        <div class="egl-player-sub">основа</div>
+                    </div>
+                `;
+            }).join('');
             
-            let benchPlayersHtml = team.players.bench.map(p => `
-                <div class="egl-player-card" onclick="showPlayerStatsModal('${p}','${team.name}')">
-                    <div class="egl-player-avatar">👤</div>
-                    <div class="egl-player-nick">${p}</div>
-                    <div class="egl-player-sub">замена</div>
-                </div>
-            `).join('');
+            let benchPlayersHtml = team.players.bench.map(p => {
+                const stats = getPlayerStats(p);
+                return `
+                    <div class="egl-player-card" onclick="showPlayerStatsModal('${p}','${team.name}')">
+                        <div class="egl-player-avatar">👤</div>
+                        <div class="egl-player-nick">${p}</div>
+                        <div style="font-size:10px; color:var(--egl-accent-orange); font-weight:700;">${stats.rating}</div>
+                        <div class="egl-player-sub">замена</div>
+                    </div>
+                `;
+            }).join('');
             
             let allPlayersHtml = mainPlayersHtml;
             if (team.players.bench.length > 0) allPlayersHtml += benchPlayersHtml;
             if (team.players.main.length === 0 && team.players.bench.length === 0) {
                 allPlayersHtml = `<div class="egl-empty-table-state">Состав не загружен</div>`;
             }
+            
+            // История матчей для команды
+            const teamHistory = matchHistory.filter(m => 
+                m.team1.id === team.id || m.team2.id === team.id
+            );
+            
+            // Предстоящие матчи для команды
+            const teamUpcoming = upcomingMatches.filter(m => 
+                m.team1.id === team.id || m.team2.id === team.id
+            );
+            
+            let historyHtml = '';
+            if (teamHistory.length === 0) {
+                historyHtml = `<div class="match-history-empty">📭 Нет сыгранных матчей</div>`;
+            } else {
+                historyHtml = teamHistory.map(m => {
+                    const isTeam1 = m.team1.id === team.id;
+                    const opponent = isTeam1 ? m.team2 : m.team1;
+                    const teamScore = isTeam1 ? m.score1 : m.score2;
+                    const oppScore = isTeam1 ? m.score2 : m.score1;
+                    const result = teamScore > oppScore ? 'win' : (teamScore < oppScore ? 'loss' : 'pending');
+                    const resultText = result === 'win' ? '✅ Победа' : (result === 'loss' ? '❌ Поражение' : '⏳ Ожидание');
+                    return `
+                        <div class="match-history-item">
+                            <div class="h-team">
+                                <img class="h-logo" src="${opponent.logo}" onerror="this.src='https://via.placeholder.com/24'">
+                                ${opponent.name}
+                            </div>
+                            <div class="h-score">${teamScore} : ${oppScore}</div>
+                            <div class="h-result ${result}">${resultText}</div>
+                            <div class="h-stage">${m.stage}</div>
+                            <div class="h-round">${m.time}</div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            
+            let upcomingHtml = '';
+            if (teamUpcoming.length === 0) {
+                upcomingHtml = `<div class="match-history-empty">📭 Нет предстоящих матчей</div>`;
+            } else {
+                upcomingHtml = teamUpcoming.map(m => {
+                    const isTeam1 = m.team1.id === team.id;
+                    const opponent = isTeam1 ? m.team2 : m.team1;
+                    return `
+                        <div class="match-history-item">
+                            <div class="h-team">
+                                <img class="h-logo" src="${opponent.logo}" onerror="this.src='https://via.placeholder.com/24'">
+                                ${opponent.name}
+                            </div>
+                            <div class="h-score">0 : 0</div>
+                            <div class="h-result pending">⏳ Ожидание</div>
+                            <div class="h-stage">${m.stage}</div>
+                            <div class="h-round">${m.time}</div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            
+            const totalMatches = teamHistory.length;
+            const wins = teamHistory.filter(m => {
+                if (m.team1.id === team.id) return m.score1 > m.score2;
+                if (m.team2.id === team.id) return m.score2 > m.score1;
+                return false;
+            }).length;
+            const losses = totalMatches - wins;
             
             document.getElementById('profileView').innerHTML = `
                 <div class="back-link-container">
@@ -1193,7 +1524,7 @@
                         <div class="egl-team-header-meta">
                             <div class="egl-meta-pill">Положение: <span>${team.position || '—'}</span></div>
                             <div class="egl-meta-pill">Лига: <span>${team.tier}</span></div>
-                            <div class="egl-meta-pill">Очки: <span>${team.points}</span></div>
+                            <div class="egl-meta-pill">Очки NBO: <span style="color:var(--egl-accent-orange); font-weight:700;">${team.points}</span></div>
                         </div>
                     </div>
                 </div>
@@ -1205,15 +1536,20 @@
                         </div>
                         <div class="egl-card">
                             <div class="egl-card-title">История матчей</div>
-                            <div class="match-history-empty">📭 Нет сыгранных матчей</div>
+                            ${historyHtml}
+                        </div>
+                        <div class="egl-card">
+                            <div class="egl-card-title">Предстоящие матчи</div>
+                            ${upcomingHtml}
                         </div>
                     </div>
                     <div class="egl-sidebar-column">
                         <div class="egl-card">
                             <div class="egl-card-title">Статистика</div>
-                            <div class="egl-stat-row"><span class="egl-stat-label">Винрейт</span><span class="egl-stat-value">${team.overallWinrate}%</span></div>
-                            <div class="egl-stat-row"><span class="egl-stat-label">Игр</span><span class="egl-stat-value highlight">0</span></div>
-                            <div class="egl-stat-row"><span class="egl-stat-label">Победы/Поражения</span><span class="egl-stat-value">0 / 0</span></div>
+                            <div class="egl-stat-row"><span class="egl-stat-label">Винрейт</span><span class="egl-stat-value">${totalMatches > 0 ? Math.round((wins/totalMatches)*100) : 0}%</span></div>
+                            <div class="egl-stat-row"><span class="egl-stat-label">Игр</span><span class="egl-stat-value highlight">${totalMatches}</span></div>
+                            <div class="egl-stat-row"><span class="egl-stat-label">Победы/Поражения</span><span class="egl-stat-value">${wins} / ${losses}</span></div>
+                            <div class="egl-stat-row"><span class="egl-stat-label">Очки NBO</span><span class="egl-stat-value" style="color:var(--egl-accent-orange);">${team.points}</span></div>
                             <div class="egl-stat-row"><span class="egl-stat-label">Средний K/D</span><span class="egl-stat-value">0.00</span></div>
                         </div>
                         <div class="egl-card">
@@ -1245,13 +1581,14 @@
         function renderTeamsList() {
             const container = document.getElementById('teamsContainer');
             container.innerHTML = '';
-            teamsData.forEach((team, idx) => {
+            const sortedTeams = [...teamsData].sort((a, b) => b.points - a.points);
+            sortedTeams.forEach((team, idx) => {
                 const card = document.createElement('div');
                 card.className = 'ranked-team-row';
                 card.onclick = () => showTeamDetail(team.id);
                 card.innerHTML = `
                     <div class="team-position">#${idx+1}</div>
-                    <div class="team-change">-</div>
+                    <div class="team-change">${team.points > 0 ? '🟢' : '🔴'}</div>
                     <div class="team-logo-container"><img src="${team.logo}" onerror="this.src='https://via.placeholder.com/50'"></div>
                     <div class="team-main-info">
                         <div class="team-identity"><span class="team-name">${team.name}</span></div>
@@ -1261,7 +1598,8 @@
                     </div>
                     <div class="team-stats-cell">
                         <div class="stat-row-block"><span class="stat-row-label">Тир</span><span class="stat-row-value tier-badge">${team.tier}</span></div>
-                        <div class="stat-row-block"><span class="stat-row-label">Очки</span><span class="stat-row-value points-count">${team.points}</span></div>
+                        <div class="stat-row-block"><span class="stat-row-label">NBO Очки</span><span class="stat-row-value points-count">${team.points}</span></div>
+                        <div class="stat-row-block"><span class="stat-row-label">В/П</span><span class="stat-row-value elo-badge">${team.wins}-${team.losses}</span></div>
                     </div>
                 `;
                 container.appendChild(card);
@@ -1272,7 +1610,7 @@
             const container = document.getElementById('matchesView');
             
             const groupedMatches = {};
-            matchesSchedule.forEach(match => {
+            upcomingMatches.forEach(match => {
                 if (!groupedMatches[match.time]) {
                     groupedMatches[match.time] = [];
                 }
@@ -1280,7 +1618,10 @@
             });
             
             let html = `
-                <div class="ranking-header">📅 Расписание матчей</div>
+                <div class="ranking-header">📅 Раунд 2 — Предстоящие матчи</div>
+                <div style="margin-bottom:16px; padding:12px 16px; background:var(--egl-box-header); border-radius:6px; border-left:4px solid var(--egl-accent-green);">
+                    <span style="font-weight:700; color:var(--egl-accent-green);">🟢 Группа 1:0</span>
+                </div>
             `;
             
             const times = Object.keys(groupedMatches).sort();
@@ -1293,6 +1634,7 @@
                 `;
                 
                 groupedMatches[time].forEach(match => {
+                    const stageLabel = match.stage === "1:0" ? "🟢 1:0" : "🔴 0:1";
                     html += `
                         <div class="match-card" onclick="showMatchModal(match.team1, match.team2)">
                             <div class="match-teams">
@@ -1300,7 +1642,9 @@
                                     <img class="team-logo" src="${match.team1.logo}" onerror="this.src='https://via.placeholder.com/32'">
                                     <span class="team-name">${match.team1.name}</span>
                                 </div>
+                                <div class="match-score-center">0</div>
                                 <div class="match-vs">VS</div>
+                                <div class="match-score-center">0</div>
                                 <div class="match-team">
                                     <span class="team-name">${match.team2.name}</span>
                                     <img class="team-logo" src="${match.team2.logo}" onerror="this.src='https://via.placeholder.com/32'">
@@ -1308,7 +1652,7 @@
                             </div>
                             <div class="match-status">
                                 <span class="status-badge">⏳ Ожидание</span>
-                                <span class="match-stage">0:0</span>
+                                <span class="match-stage">${stageLabel}</span>
                             </div>
                         </div>
                     `;
@@ -1323,41 +1667,60 @@
             container.innerHTML = html;
         }
 
-        // ============================================
-        // СТАТИСТИКА ИГРОКОВ (ВСЕ 0.00)
-        // ============================================
         function renderStats() {
             const container = document.getElementById('statsView');
             
             const allPlayers = [];
             allTeams.forEach(team => {
                 team.players.main.forEach(player => {
-                    allPlayers.push({
-                        name: player,
-                        team: team.name,
-                        teamLogo: team.logo,
-                        rating: 0.00,
-                        kd: 0.00,
-                        kpr: 0.00,
-                        dpr: 0.00
-                    });
+                    const stats = getPlayerStats(player);
+                    if (stats.rating !== "0.00") {
+                        allPlayers.push({
+                            name: player,
+                            team: team.name,
+                            teamLogo: team.logo,
+                            rating: parseFloat(stats.rating),
+                            kd: parseFloat(stats.kd),
+                            kpr: parseFloat(stats.kpr),
+                            dpr: parseFloat(stats.dpr),
+                            k: stats.k,
+                            d: stats.d,
+                            a: stats.a
+                        });
+                    }
                 });
             });
             
-            function renderPlayerTable(players, title, statKey) {
+            const sortedByRating = [...allPlayers].sort((a, b) => b.rating - a.rating);
+            const sortedByKD = [...allPlayers].sort((a, b) => b.kd - a.kd);
+            const sortedByKPR = [...allPlayers].sort((a, b) => b.kpr - a.kpr);
+            const sortedByDPR = [...allPlayers].sort((a, b) => a.dpr - b.dpr);
+            
+            function renderPlayerTable(players, title, statKey, showKDA = false) {
+                if (players.length === 0) {
+                    return `
+                        <div class="egl-card">
+                            <div class="egl-card-title">${title}</div>
+                            <div class="match-history-empty">Нет данных</div>
+                        </div>
+                    `;
+                }
                 return `
                     <div class="egl-card">
                         <div class="egl-card-title">${title}</div>
                         <div style="padding: 8px 16px;">
                             ${players.slice(0, 10).map((p, i) => `
                                 <div class="match-history-item" style="cursor:pointer;" onclick="showPlayerStatsModal('${p.name}','${p.team}')">
-                                    <div style="display:flex; align-items:center; gap:10px;">
+                                    <div style="display:flex; align-items:center; gap:10px; flex:1;">
                                         <span style="font-weight:700; color:var(--egl-accent-orange); width:24px;">#${i+1}</span>
                                         <img src="${p.teamLogo}" onerror="this.src='https://via.placeholder.com/24'" style="width:24px;height:24px;border-radius:4px;object-fit:contain;background:#0d0f12;border:1px solid var(--egl-border);">
                                         <span style="font-weight:600;">${p.name}</span>
-                                        <span style="font-size:12px; color:var(--egl-text-grey);">${p.team}</span>
+                                        <span style="font-size:11px; color:var(--egl-text-grey);">${p.team}</span>
                                     </div>
-                                    <span style="font-weight:700; color:var(--egl-accent-blue);">${p[statKey].toFixed(2)}</span>
+                                    <div style="display:flex; align-items:center; gap:8px;">
+                                        ${showKDA ? `<span style="font-size:11px; color:var(--egl-text-grey);">${p.k}/${p.d}/${p.a}</span>` : ''}
+                                        <span style="font-weight:700; color:var(--egl-accent-blue); min-width:40px; text-align:right;">${p[statKey].toFixed(2)}</span>
+                                    </div>
                                 </div>
                             `).join('')}
                         </div>
@@ -1368,39 +1731,36 @@
             container.innerHTML = `
                 <div class="ranking-header">📊 Статистика игроков</div>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-                    ${renderPlayerTable(allPlayers, '🏆 Рейтинг 2.0 (↓)', 'rating')}
-                    ${renderPlayerTable(allPlayers, '🎯 K/D Ratio (↓)', 'kd')}
-                    ${renderPlayerTable(allPlayers, '💥 KPR (↓)', 'kpr')}
-                    ${renderPlayerTable(allPlayers, '🛡️ DPR (↑)', 'dpr')}
+                    ${renderPlayerTable(sortedByRating, '🏆 Рейтинг 2.0 (↓)', 'rating', true)}
+                    ${renderPlayerTable(sortedByKD, '🎯 K/D Ratio (↓)', 'kd', true)}
+                    ${renderPlayerTable(sortedByKPR, '💥 KPR (↓)', 'kpr', true)}
+                    ${renderPlayerTable(sortedByDPR, '🛡️ DPR (↑)', 'dpr', true)}
                 </div>
             `;
         }
 
-        // ============================================
-        // ТУРНИР — SWISS SYSTEM + ПРИЗОВЫЕ
-        // ============================================
         function renderTournament() {
             const container = document.getElementById('tournamentView');
             
-            const round1Matches = [
-                { team1: allTeams[8], team2: allTeams[10] },
-                { team1: allTeams[12], team2: allTeams[2] },
-                { team1: allTeams[13], team2: allTeams[14] },
-                { team1: allTeams[6], team2: allTeams[4] },
-                { team1: allTeams[9], team2: allTeams[5] },
-                { team1: allTeams[7], team2: allTeams[3] },
-                { team1: allTeams[1], team2: allTeams[11] },
-                { team1: allTeams[0], team2: allTeams[15] }
+            const round1Results = [
+                { team1: allTeams[8], team2: allTeams[10], score1: 1, score2: 0, stage: "0:0", status: "finished" },
+                { team1: allTeams[1], team2: allTeams[11], score1: 13, score2: 8, stage: "0:0", status: "finished" },
+                { team1: allTeams[14], team2: allTeams[13], score1: 13, score2: 10, stage: "0:0", status: "finished" },
+                { team1: allTeams[4], team2: allTeams[6], score1: 19, score2: 17, stage: "0:0", status: "finished" },
+                { team1: allTeams[5], team2: allTeams[9], score1: 13, score2: 0, stage: "0:0", status: "finished" },
+                { team1: allTeams[7], team2: allTeams[3], score1: 13, score2: 6, stage: "0:0", status: "finished" },
+                { team1: allTeams[0], team2: allTeams[15], score1: 1, score2: 0, stage: "0:0", status: "finished" },
+                { team1: allTeams[2], team2: allTeams[12], score1: 1, score2: 0, stage: "0:0", status: "finished" }
             ];
             
             const prizeData = [
-                { place: "1-е место", status: "champion", statusText: "🏆 Чемпион", emoji: "🥇" },
-                { place: "2-е место", status: "finalist", statusText: "🥈 Финалист", emoji: "🥈" },
-                { place: "3-4 место", status: "semi", statusText: "❌ 1/2 финала", emoji: "🥉" },
-                { place: "5-8 место", status: "eliminated", statusText: "❌ 1/4 финала", emoji: "" },
-                { place: "9-11 место", status: "eliminated", statusText: "❌ Вылет (2:3)", emoji: "" },
-                { place: "12-14 место", status: "eliminated", statusText: "❌ Вылет (1:3)", emoji: "" },
-                { place: "15-16 место", status: "eliminated", statusText: "❌ Вылет (0:3)", emoji: "" }
+                { place: "1-е место", status: "champion", statusText: "🏆 Чемпион +500", emoji: "🥇" },
+                { place: "2-е место", status: "finalist", statusText: "🥈 Финалист +400", emoji: "🥈" },
+                { place: "3-4 место", status: "semi", statusText: "❌ 1/2 финала +300", emoji: "🥉" },
+                { place: "5-8 место", status: "eliminated", statusText: "❌ 1/4 финала +150", emoji: "" },
+                { place: "9-11 место", status: "eliminated", statusText: "❌ Вылет (2:3) +75", emoji: "" },
+                { place: "12-14 место", status: "eliminated", statusText: "❌ Вылет (1:3) 0", emoji: "" },
+                { place: "15-16 место", status: "eliminated", statusText: "❌ Вылет (0:3) 0", emoji: "" }
             ];
             
             let html = `
@@ -1413,27 +1773,68 @@
 
                 <div class="swiss-round">
                     <div class="swiss-round-header">
-                        Раунд 1
-                        <span class="round-record">0:0</span>
+                        Раунд 1 — Результаты
+                        <span class="round-record">1:0</span>
                     </div>
                     <div class="swiss-matches">
-                        ${round1Matches.map(match => `
-                            <div class="swiss-match" onclick="showMatchModal(match.team1, match.team2)">
-                                <div class="match-teams">
-                                    <div class="match-team">
-                                        <img class="team-logo" src="${match.team1.logo}" onerror="this.src='https://via.placeholder.com/22'">
-                                        ${match.team1.name}
+                        ${round1Results.map(match => {
+                            const resultClass = match.status === 'finished' ? (match.score1 > match.score2 ? 'win' : 'loss') : 'pending';
+                            const resultText = match.status === 'finished' ? (match.score1 > match.score2 ? '✅ Победа' : '❌ Поражение') : '⏳ Ожидание';
+                            return `
+                                <div class="swiss-match" onclick="showMatchModal(match.team1, match.team2)">
+                                    <div class="match-teams">
+                                        <div class="match-team">
+                                            <img class="team-logo" src="${match.team1.logo}" onerror="this.src='https://via.placeholder.com/22'">
+                                            ${match.team1.name}
+                                        </div>
+                                        <div class="match-score">${match.score1}</div>
+                                        <div class="match-vs">VS</div>
+                                        <div class="match-score">${match.score2}</div>
+                                        <div class="match-team">
+                                            <img class="team-logo" src="${match.team2.logo}" onerror="this.src='https://via.placeholder.com/22'">
+                                            ${match.team2.name}
+                                        </div>
                                     </div>
-                                    <div class="match-vs">VS</div>
-                                    <div class="match-team">
-                                        <img class="team-logo" src="${match.team2.logo}" onerror="this.src='https://via.placeholder.com/22'">
-                                        ${match.team2.name}
+                                    <div style="display:flex; align-items:center; gap:12px;">
+                                        <div class="match-result ${resultClass}">${resultText}</div>
+                                        <div class="match-stage">${match.stage}</div>
                                     </div>
                                 </div>
-                                <div class="match-score">0-0</div>
-                                <div class="match-result pending">⏳ Ожидание</div>
-                            </div>
-                        `).join('')}
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+
+                <div class="swiss-round">
+                    <div class="swiss-round-header">
+                        Раунд 2 — Расписание
+                        <span class="round-record">1:0 · 0:1</span>
+                    </div>
+                    <div class="swiss-matches">
+                        ${upcomingMatches.map(match => {
+                            const stageLabel = match.stage === "1:0" ? "🟢 1:0" : "🔴 0:1";
+                            return `
+                                <div class="swiss-match" onclick="showMatchModal(match.team1, match.team2)">
+                                    <div class="match-teams">
+                                        <div class="match-team">
+                                            <img class="team-logo" src="${match.team1.logo}" onerror="this.src='https://via.placeholder.com/22'">
+                                            ${match.team1.name}
+                                        </div>
+                                        <div class="match-score">0</div>
+                                        <div class="match-vs">VS</div>
+                                        <div class="match-score">0</div>
+                                        <div class="match-team">
+                                            <img class="team-logo" src="${match.team2.logo}" onerror="this.src='https://via.placeholder.com/22'">
+                                            ${match.team2.name}
+                                        </div>
+                                    </div>
+                                    <div style="display:flex; align-items:center; gap:12px;">
+                                        <div class="match-result pending">⏳ Ожидание</div>
+                                        <div class="match-stage">${stageLabel}</div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
                     </div>
                 </div>
 
@@ -1452,9 +1853,8 @@
                     </div>
                 </div>
 
-                <!-- ПРИЗОВЫЕ МЕСТА -->
                 <div class="prize-container">
-                    <div class="prize-title">💰 Призовые места</div>
+                    <div class="prize-title">💰 Призовые места + бонусы NBO</div>
                     <div class="prize-grid">
                         ${prizeData.map(p => `
                             <div class="prize-item">
